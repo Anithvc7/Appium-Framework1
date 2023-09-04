@@ -2,8 +2,10 @@ package AppiumLearning.pageObjects.android;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import AppiumLearning.utils.AndroidAction;
 import io.appium.java_client.android.AndroidDriver;
@@ -28,7 +30,17 @@ AndroidDriver driver;
 	@AndroidFindBy(id="com.androidsample.generalstore:id/totalAmountLbl")
 	private WebElement totalAmount;
 	
+	@AndroidFindBy(id="com.androidsample.generalstore:id/termsButton")
+	private WebElement termsButton;
 	
+	@AndroidFindBy(id="android:id/button1")
+	private WebElement acceptButton;
+	
+	@AndroidFindBy(className="android.widget.CheckBox")
+	private WebElement checkBox;
+	
+	@AndroidFindBy(id="com.androidsample.generalstore:id/btnProceed")
+	private WebElement proceed;
 	
 	
 	
@@ -55,11 +67,51 @@ AndroidDriver driver;
 		return sum;
 	}
 	
-	//public double getTotalAmoundDisplay() 
+	public Double getTotalAmoundDisplay() 
 	
 	{
-		//return getFormattedAmount(totalAmount.getText());
+		return getFormattedAmount(totalAmount.getText());
 		
+	}
+
+	
+	public Double getFormattedAmount(String amount) {
+		
+		Double displayPrices= Double.parseDouble(amount.substring(1));
+		return displayPrices;
+	}
+	
+	
+	public void acceptTermsConditions() throws InterruptedException 
+	{
+		longPressAction(termsButton);
+		Thread.sleep(2000);
+	
+		
+	}
+	
+	public void checkBoxClick() 
+	{
+		checkBox.click();
+		
+	}
+	public void proceedClick() throws InterruptedException {
+		proceed.click();
+		Thread.sleep(6000);
+	}
+	public String acceptButtonClick() {
+		return acceptButton.getText();
+	}
+	
+	public void acceptButtonTwo() throws InterruptedException 
+	{
+		acceptButton.click();
+		Thread.sleep(2000);
+	}
+	
+	public String proceedBtn()
+	{
+		return proceed.getText();
 	}
 	
 }
