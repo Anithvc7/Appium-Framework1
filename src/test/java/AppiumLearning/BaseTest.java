@@ -82,6 +82,15 @@ public class BaseTest {
 				));
 	}
 	
+	public Double getFormattedAmount(String amount) 
+	
+	{  Double price =Double.parseDouble(amount.substring(1));
+	
+	return price;
+		
+		
+		
+	}
 	
 	
 	

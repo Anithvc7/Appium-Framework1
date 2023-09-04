@@ -16,7 +16,9 @@ import org.testng.annotations.Test;
 
 import com.google.common.collect.ImmutableMap;
 
+import AppiumLearning.pageObjects.android.CartPage;
 import AppiumLearning.pageObjects.android.FormPage;
+import AppiumLearning.pageObjects.android.ProductCatalogue;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
@@ -31,17 +33,16 @@ public void GeneralStoreTestcase3test() throws InterruptedException
      formPage.setNameField("Anith vc");
      formPage.setGenter("Female");
      formPage.selectCountrySelection("Argentina");
-     formPage.letsShopSelection();
+     ProductCatalogue productCatalogue = formPage.letsShopSelection();
+	 //or we can create object like below
+    // ProductCatalogue productCatalogue = new ProductCatalogue(driver);
+     productCatalogue.addItemToCartByIndex(0);
+     productCatalogue.addItemToCartByIndex(0);
+     CartPage cartPage = productCatalogue.clickCartIcon();
 	
-	
-	
-	//driver.findElements(By.xpath("//android.widget.TextView[@text='ADD TO CART']")).get(0).click(); // 1st methord
-	//driver.findElement(By.xpath("//android.widget.TextView[@text='ADD TO CART'])[1]")).click();  // 2nd methord
-	driver.findElements(By.xpath("//android.widget.TextView[@text='ADD TO CART']")).get(0).click();
-		driver.findElement(By.id("com.androidsample.generalstore:id/appbar_btn_cart")).click();
-		// important --wait.until(ExpectedConditions)
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5)); // this is introduced to wait till the next page open as the element id are same 
-		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("com.androidsample.generalstore:id/toolbar_title")), "text", "Cart"));
+		
+		//WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5)); // this is introduced to wait till the next page open as the element id are same 
+		//wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("com.androidsample.generalstore:id/toolbar_title")), "text", "Cart"));
 		Thread.sleep(3000);
 	//int productCount =driver.findElements(By.id("com.androidsample.generalstore:id/productPrice")).size(); -- changing this to easy way 
 		

@@ -1,14 +1,15 @@
 package AppiumLearning.pageObjects.android;
 
 import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-
 import AppiumLearning.utils.AndroidAction;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+
+
 public class FormPage extends AndroidAction {
 	AndroidDriver driver;
 	
@@ -34,13 +35,8 @@ public class FormPage extends AndroidAction {
 	@AndroidFindBy(id="com.androidsample.generalstore:id/btnLetsShop")
     private WebElement letsShop;
 	
-	@AndroidFindBy(xpath="//android.widget.TextView[@text='ADD TO CART'])[1]")
-	private WebElement AddToCart;
-	
-	
-	
-	
-	
+
+	//driver.findElements(By.xpath("//android.widget.TextView[@text='ADD TO CART']")).get(0).click();
 	
 	public void setNameField(String name)
 	{
@@ -65,15 +61,15 @@ public class FormPage extends AndroidAction {
 		 
 	 }
 	 
-	 public void letsShopSelection() throws InterruptedException 
+	 public ProductCatalogue letsShopSelection() throws InterruptedException 
 	 {
 		 letsShop.click();
 		 Thread.sleep(3000);
+		return  new ProductCatalogue(driver);
 	 }
-	 public void addToCartSelection() 
-	 {
-		 AddToCart.click();
-	 }
+	
+	
+	 
 	
 
 }
