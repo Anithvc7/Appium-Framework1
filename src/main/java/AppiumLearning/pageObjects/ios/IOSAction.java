@@ -1,4 +1,7 @@
-package AppiumLearning.utils;
+package AppiumLearning.pageObjects.ios;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -7,29 +10,36 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.google.common.collect.ImmutableMap;
 
+import AppiumLearning.utils.AppiumUtilities;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class AndroidAction extends AppiumUtilities{
+public class IOSAction extends AppiumUtilities{
 	AndroidDriver driver;
 	
-	public  AndroidAction(AndroidDriver driver) 
+	public  IOSAction(AndroidDriver driver) 
 	{
-	    super(driver);
+		super(driver);
 		this.driver=driver;	
 		
 	}
 	
-	public void scrollToText(String text)
+	public void scrollToWebElement(WebElement ele)
 	{
-		driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable (new UiSelector()).scrollIntoView(text(\""+text+"\"));"));
-		
+		HashMap<String, String> scrollObject = new HashMap<>();
+		JavascriptExecutor js = driver; 
+		scrollObject.put("direction", "down");
+		scrollObject.put("element", ((RemoteWebElement)ele).getId());
+		js.executeScript("mobile: scroll", scrollObject);
 	}
 
-	public void longPressAction(WebElement ele) {
-		((JavascriptExecutor) driver).executeScript("mobile: longClickGesture",
-				ImmutableMap.of("elementId",((RemoteWebElement)ele).getId(),"duration",2000));
+	public void longPressActionIos(WebElement ele) {
+		Map <String,Object>params = new HashMap<>();
+	    params.put("elements", ((RemoteWebElement)ele).getId());
+	    params.put("duration", 5);
+			
+	    driver.executeScript("mobile:touchAndHold", params);
 		}
 		
 		

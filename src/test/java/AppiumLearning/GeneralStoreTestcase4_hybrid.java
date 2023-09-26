@@ -1,5 +1,8 @@
 package AppiumLearning;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
@@ -20,15 +23,21 @@ import AppiumLearning.pageObjects.android.CartPage;
 import AppiumLearning.pageObjects.android.FormPage;
 import AppiumLearning.pageObjects.android.ProductCatalogue;
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.functions.ExpectedCondition;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
 
 @Test
-public class GeneralStoreTestcase4_hybrid extends BaseTest {
+public class GeneralStoreTestcase4_hybrid extends AndroidBaseTest {
 
-public void GeneralStoreTestcase3test() throws InterruptedException
+public void GeneralStoreTestcase3test() throws InterruptedException, MalformedURLException
 {
+	
+	
+	
 	FormPage formPage = new FormPage (driver);
      formPage.setNameField("Anith vc");
      formPage.setGenter("Female");
